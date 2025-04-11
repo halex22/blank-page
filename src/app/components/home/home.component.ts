@@ -15,11 +15,11 @@ export class HomeComponent {
 
   service = inject(NotesService)
 
-  noteContent = signal<string>(this.service.note().content)
-  totalWords = computed(() => this.noteContent().match(/\w+/g)?.length ?? 0)
-  totalChars = computed(() => this.noteContent().length)
+  note = this.service.note
+  totalWords = computed(() => this.note().content.match(/\w+/g)?.length ?? 0)
+  totalChars = computed(() => this.note().content.length)
 
-  updateObj: {note: Signal<Note>, saveFnt: Function} = {
+  updateObj: {note: WritableSignal<Note>, saveFnt: Function} = {
     note: this.service.note,
     saveFnt: this.service.saveNote
   }
@@ -27,5 +27,6 @@ export class HomeComponent {
   updateNote(updatedContent: any) {
     // this.noteContent.set(updatedContent)
     console.log(updatedContent)
+    this.note.update(prev => prev)
   }
 }

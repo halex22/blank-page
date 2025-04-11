@@ -1,4 +1,4 @@
-import { Injectable, Signal, signal } from '@angular/core';
+import { Injectable, Signal, signal, WritableSignal } from '@angular/core';
 import { type Note } from '../models/note';
 
 @Injectable({
@@ -6,7 +6,8 @@ import { type Note } from '../models/note';
 })
 export class NotesService {
 
-  note: Signal<Note>
+  note: WritableSignal<Note>
+  test = signal('')
 
   constructor() { 
     this.note = signal(this.loadNote())

@@ -2,7 +2,7 @@
   page-content 
   contenteditable 
   [saveOnLeave]="updateObj" 
-  [note-content]="noteContent()"
+  [note-content]="note().content"
   >
 </div>
 <app-details [words-total]="totalWords()" [chars-total]="totalChars()"></app-details>

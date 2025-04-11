@@ -9,7 +9,6 @@ import { Component, input, output } from '@angular/core';
 export class PageContentComponent {
 
   currentNote = input.required({alias: 'note-content'})
-  sendUpdatedContent = output<string>()
 
   constructor() { }
 

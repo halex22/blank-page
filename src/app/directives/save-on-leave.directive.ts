@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, inject, Input, Signal } from '@angular/core';
+import { Directive, ElementRef, HostListener, inject, Input, Signal, WritableSignal } from '@angular/core';
 import { Note } from '../models/note';
 
 @Directive({
@@ -8,7 +8,7 @@ export class SaveOnLeaveDirective {
 
   private el = inject(ElementRef)
 
-  @Input() saveOnLeave!: {note: Signal<Note>, saveFnt: Function}
+  @Input() saveOnLeave!: {note: WritableSignal<Note>, saveFnt: Function}
 
   @HostListener('mouseleave') onMouseLeave() {
     this.saveNote()
@@ -20,8 +20,23 @@ export class SaveOnLeaveDirective {
 
   saveNote() {
     const updatedText = this.el.nativeElement.innerText
+    this.saveOnLeave.note.update(prev => {
+      const {creation_date, last_edit} = prev
+      return {content: updatedText, creation_date, last_edit}
+    })
     this.saveOnLeave.note().content = updatedText
     this.saveOnLeave.saveFnt(this.saveOnLeave.note())
+  }
+
+  @HostListener('focus') onFocus() {
+  this.moveCaretToEnd();
+
+  }
+
+  moveCaretToEnd() {
+    const input = this.el.nativeElement;
+    input.focus();
+    input.setSelectionRange(input.value.length, input.value.length);
   }
 
 }
