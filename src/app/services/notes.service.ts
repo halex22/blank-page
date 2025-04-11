@@ -6,8 +6,6 @@ import { type Note } from '../models/note';
 })
 export class NotesService {
 
-  private readonly STORAGE_KEY = 'notes'
-
   note: Signal<Note>
 
   constructor() { 
@@ -16,11 +14,12 @@ export class NotesService {
 
   saveNote(oldNote: Note): void {
     oldNote.last_edit = Date.now()
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(oldNote))
+    localStorage.setItem('NOTES', JSON.stringify(oldNote))
   }
 
   loadNote(): Note {
-    const savedNote = localStorage.getItem(this.STORAGE_KEY)
+    const savedNote = localStorage.getItem('NOTES')
+    console.log(savedNote)
     return savedNote ? JSON.parse(savedNote) : this.generateDefaultNote()
   }
 
