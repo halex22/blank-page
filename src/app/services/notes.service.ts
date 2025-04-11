@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Signal, signal } from '@angular/core';
 import { type Note } from '../models/note';
 
 @Injectable({
@@ -8,10 +8,10 @@ export class NotesService {
 
   private readonly STORAGE_KEY = 'notes'
 
-  note: Note
+  note: Signal<Note>
 
   constructor() { 
-    this.note = this.loadNote()
+    this.note = signal(this.loadNote())
   }
 
   saveNote(oldNote: Note): void {

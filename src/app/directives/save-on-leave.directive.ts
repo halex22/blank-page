@@ -1,7 +1,7 @@
 import { Directive, ElementRef, HostListener, inject } from '@angular/core';
 
 @Directive({
-  selector: '[appSaveOnLeave]'
+  selector: '[SaveOnLeave]'
 })
 export class SaveOnLeaveDirective {
 
@@ -10,6 +10,7 @@ export class SaveOnLeaveDirective {
   @HostListener('mouseleave') onMouseLeave() {
     console.log("You're leaving")
     console.log(this.el.nativeElement.innerText)
+    // poi qui possiamo salvare 
   }
 
 }

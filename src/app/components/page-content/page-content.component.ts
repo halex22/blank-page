@@ -1,31 +1,32 @@
-import { Component, inject } from '@angular/core';
-import { NotesService } from '../../services/notes.service';
-import { type Note } from '../../models/note';
+import { Component, input, OnDestroy, output } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'div[page-content]',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './page-content.component.html',
   styleUrl: './page-content.component.scss'
 })
 export class PageContentComponent {
 
-  currentNote: Note
-  service = inject(NotesService)
+  currentNote = input.required({alias: 'note-content'})
+  sendUpdatedContent = output<string>()
+  form!: FormGroup
+
+  ngOnInit() {
+    this.form = new FormGroup({
+      noteContent: new FormControl(this.currentNote())
+    })
+  }
 
   constructor() {
-    this.currentNote = this.service.note
-
-    // setInterval(() => {
-    //   console.log('sto salvando')
-    //   this.updateCurrentContent()
-    // }, 2000)
+    setInterval(() => {
+      const newValue = this.form.value.noteContent
+      this.sendUpdatedContent.emit(newValue)
+    }, 1000)
+    
   }
 
-  updateCurrentContent() {
-    const paragraph = document.getElementById('userInput')
-    this.currentNote.content = paragraph?.textContent ?? this.currentNote.content
-    this.service.saveNote(this.currentNote)
-  }
+
 }
  
