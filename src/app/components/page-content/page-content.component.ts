@@ -16,10 +16,10 @@ export class PageContentComponent {
   constructor() {
     this.currentNote = this.service.note
 
-    setInterval(() => {
-      console.log('sto salvando')
-      this.updateCurrentContent()
-    }, 2000)
+    // setInterval(() => {
+    //   console.log('sto salvando')
+    //   this.updateCurrentContent()
+    // }, 2000)
   }
 
   updateCurrentContent() {
@@ -28,3 +28,4 @@ export class PageContentComponent {
     this.service.saveNote(this.currentNote)
   }
 }
+ 
