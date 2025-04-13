@@ -1,8 +1,16 @@
-<div 
+<app-header></app-header>
+<main>
+  <div 
   page-content 
-  contenteditable 
-  [saveOnLeave]="updateObj" 
-  [note-content]="note().content"
+  contenteditable
+  
+  [updateContent]="testContent"
+  [saveOnLeave]="{saveFnt
+    : updateNote}" 
+
+  [note-content]="testContent"
   >
 </div>
 <app-details [words-total]="totalWords()" [chars-total]="totalChars()"></app-details>
+</main>
+

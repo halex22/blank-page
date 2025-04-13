@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, inject, Input, Signal, WritableSignal } from '@angular/core';
+import { Directive, ElementRef, HostListener, inject, Input,  WritableSignal } from '@angular/core';
 import { Note } from '../models/note';
 
 @Directive({
@@ -8,24 +8,25 @@ export class SaveOnLeaveDirective {
 
   private el = inject(ElementRef)
 
-  @Input() saveOnLeave!: {note: WritableSignal<Note>, saveFnt: Function}
+  @Input() saveOnLeave!:  {saveFnt: Function}
 
   @HostListener('mouseleave') onMouseLeave() {
-    this.saveNote()
+    // this.saveNote()
   }
 
   @HostListener('focusout') onFocusOut() {
-    this.saveNote()
+    this.saveOnLeave.saveFnt()
+    console.log('focus out of the div')
   }
 
   saveNote() {
-    const updatedText = this.el.nativeElement.innerText
-    this.saveOnLeave.note.update(prev => {
-      const {creation_date, last_edit} = prev
-      return {content: updatedText, creation_date, last_edit}
-    })
-    this.saveOnLeave.note().content = updatedText
-    this.saveOnLeave.saveFnt(this.saveOnLeave.note())
+    // const updatedText = this.el.nativeElement.innerText
+    // this.saveOnLeave.note.update(prev => {
+    //   const {creation_date, last_edit} = prev
+    //   return {content: updatedText, creation_date, last_edit}
+    // })
+    // this.saveOnLeave.note().content = updatedText
+    // this.saveOnLeave.saveFnt(this.saveOnLeave.note())
   }
 
   @HostListener('focus') onFocus() {

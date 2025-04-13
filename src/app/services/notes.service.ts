@@ -13,9 +13,8 @@ export class NotesService {
     this.note = signal(this.loadNote())
   }
 
-  saveNote(oldNote: Note): void {
-    oldNote.last_edit = Date.now()
-    localStorage.setItem('NOTES', JSON.stringify(oldNote))
+  saveNote(): void {
+    localStorage.setItem('NOTES', JSON.stringify(this.note()))
   }
 
   loadNote(): Note {
