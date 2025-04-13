@@ -20,24 +20,18 @@ export class HomeComponent {
 
   note = this.service.note
 
-  testContent = signal<string>(this.note().content)
-  totalWords = computed(() => this.testContent().match(/\w+/g)?.length ?? 0)
-  totalChars = computed(() => this.testContent().length)
+  noteContent = signal<string>(this.note().content)
+  totalWords = computed(() => this.noteContent().match(/\w+/g)?.length ?? 0)
+  totalChars = computed(() => this.noteContent().length)
  
-  saveChanges() {
-    
+  saveChanges = () => { // ask about this context 
+    console.info('trying to save')
+    console.log(this.note)
     this.note.update(prev => {
       const {creation_date} = prev
-      return {content: this.testContent(), creation_date, last_edit: Date.now()}
+      return {content: this.noteContent(), creation_date, last_edit: Date.now()}
     })
     this.service.saveNote()
   }
-
-  updateNote(updatedContent: any) {
-    // this.noteContent.set(updatedContent)
-    console.log(updatedContent)
-    this.note.update(prev => prev)
-  }
-
 
 }
