@@ -19,7 +19,6 @@ export class NotesService {
 
   loadNote(): Note {
     const savedNote = localStorage.getItem('NOTES')
-    console.log(savedNote)
     return savedNote ? JSON.parse(savedNote) : this.generateDefaultNote()
   }
 

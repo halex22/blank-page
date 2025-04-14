@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, OnInit, output } from '@angular/core';
 
 @Component({
   selector: 'div[page-content]',
@@ -6,11 +6,17 @@ import { Component, input, output } from '@angular/core';
   templateUrl: './page-content.component.html',
   styleUrl: './page-content.component.scss'
 })
-export class PageContentComponent {
+export class PageContentComponent implements OnInit{
 
   currentNote = input.required({alias: 'note-content'})
 
-  constructor() { }
+  constructor() { 
+  }
+
+  ngOnInit(): void {
+    console.log('logging on init')
+    console.log(this.currentNote)
+  }
 
 
 }

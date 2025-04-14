@@ -12,7 +12,7 @@ export class UpdateContentDirective {
 
   @HostListener('input')
   onInput() {
-    const updatedText = this.el.nativeElement.innerText
+    const updatedText = this.el.nativeElement.querySelector('p').innerHTML
     this.updateContent.set(updatedText)
   }
 
