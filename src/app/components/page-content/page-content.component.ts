@@ -1,4 +1,4 @@
-import { Component, input, OnInit, output } from '@angular/core';
+import { Component, input, OnInit, Input, WritableSignal } from '@angular/core';
 
 @Component({
   selector: 'div[page-content]',
@@ -8,6 +8,7 @@ import { Component, input, OnInit, output } from '@angular/core';
 })
 export class PageContentComponent implements OnInit{
 
+  // @Input({required:true, alias:'note-content'}) currentNote!: WritableSignal<string>
   currentNote = input.required({alias: 'note-content'})
 
   constructor() { 

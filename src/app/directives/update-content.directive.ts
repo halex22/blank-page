@@ -14,6 +14,7 @@ export class UpdateContentDirective {
   onInput() {
     const updatedText = this.el.nativeElement.querySelector('p').innerHTML
     this.updateContent.set(updatedText)
+    console.log(updatedText)
   }
 
 
