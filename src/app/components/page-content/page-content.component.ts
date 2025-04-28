@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, Input, input, output, WritableSignal } from '@angular/core';
 
 @Component({
   selector: 'div[page-content]',
@@ -8,7 +8,7 @@ import { Component, input, output } from '@angular/core';
 })
 export class PageContentComponent {
 
-  currentNote = input.required({alias: 'note-content'})
+  @Input({required: true, alias: 'note-content'}) currentNote!: WritableSignal<string>
 
   constructor() { }
 

@@ -6,17 +6,17 @@ import { NotesService } from '../../services/notes.service';
 import { Note } from '../../models/note';
 import { UpdateContentDirective } from '../../directives/update-content.directive';
 import { HeaderComponent } from '../header/header.component';
+import { DrawerComponent } from "../drawer/drawer.component";
 
 @Component({
   selector: 'app-home',
-  imports: [PageContentComponent, SaveOnLeaveDirective, DetailsComponent, UpdateContentDirective, HeaderComponent],
+  imports: [PageContentComponent, SaveOnLeaveDirective, DetailsComponent, UpdateContentDirective, HeaderComponent, DrawerComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
 
   service = inject(NotesService)
-  textToDownload = output<string>()
 
   note = this.service.note
 
@@ -25,8 +25,6 @@ export class HomeComponent {
   totalChars = computed(() => this.noteContent().length)
  
   saveChanges = () => { // ask about this context 
-    console.info('trying to save')
-    console.log(this.note)
     this.note.update(prev => {
       const {creation_date} = prev
       return {content: this.noteContent(), creation_date, last_edit: Date.now()}
