@@ -12,7 +12,7 @@ export class HeaderComponent {
   constructor(private service:NotesService) {}
 
   onDownload() {
-    const note = new Blob([this.service.note().content], {type: 'text/plain'})
+    const note = new Blob([this.service.currentNote().content], {type: 'text/plain'})
     const url = URL.createObjectURL(note)
     const link = document.createElement('a')
     link.href = url

@@ -1,4 +1,4 @@
-import { Component, Input, input, output, WritableSignal } from '@angular/core';
+import { Component, Input, input, OnInit, output, WritableSignal } from '@angular/core';
 
 @Component({
   selector: 'div[page-content]',

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, computed } from '@angular/core';
+import { NotesService } from '../../services/notes.service';
+import { inject } from '@angular/core';
 
 @Component({
   selector: 'app-drawer',
@@ -7,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './drawer.component.scss'
 })
 export class DrawerComponent {
+
+  service = inject(NotesService)
+
+  // noteList = computed(() )
 
 }

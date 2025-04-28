@@ -17,7 +17,7 @@ export class HomeComponent {
 
   service = inject(NotesService)
 
-  note = this.service.note
+  note = this.service.currentNote
 
   noteContent = signal<string>(this.note().content)
   totalWords = computed(() => this.noteContent().match(/\w+/g)?.length ?? 0)
@@ -25,10 +25,10 @@ export class HomeComponent {
  
   saveChanges = () => { // ask about this context 
     this.note.update(prev => {
-      const {creation_date} = prev
-      return {content: this.noteContent(), creation_date, last_edit: Date.now()}
+      const {creation_date, id} = prev
+      return {content: this.noteContent(), creation_date, last_edit: Date.now(), id}
     })
-    this.service.saveNote()
+    this.service.saveCurrentNote()
   }
 
 }

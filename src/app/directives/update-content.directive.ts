@@ -12,9 +12,24 @@ export class UpdateContentDirective {
 
   @HostListener('input')
   onInput() {
-    const updatedText = this.el.nativeElement.querySelector('p').innerHTML
+    const updatedText = this.el.nativeElement.innerText
     this.updateContent.set(updatedText)
-    console.log(updatedText)
+    this.moveCursorToEnd()
+  }
+
+  private moveCursorToEnd() {
+    const element = this.el.nativeElement
+
+    const range = document.createRange()
+    const selection = window.getSelection()
+
+    range.selectNodeContents(element)
+    range.collapse(false)
+
+    if (selection) {
+      selection.removeAllRanges()
+      selection.addRange(range)
+    }
   }
 
 

@@ -8,20 +8,26 @@ import { effect } from '@angular/core';
 export class NotesService {
 
   private readonly NOTES_KEY = 'NOTES'
-  private readonly CURRENT_NOTE = ''
+  private readonly CURRENT_NOTE_KEY = 'CURRENT_NOTE'
 
-  note: WritableSignal<Note>
+  currentNote: WritableSignal<Note>
   notes:  WritableSignal<Note[]>
 
 
   constructor() { 
-    this.note = signal(this.loadNote())
+    this.currentNote = signal(this.loadCurrentNote())
     this.notes = signal(this.loadAllNotes())
-
   }
 
   saveAllNotes() {
-    
+
+    const updatedNotes = this.notes().forEach(note => {
+      if (note.id === this.currentNote().id) return this.currentNote()
+      return note
+    })
+
+    localStorage.setItem(this.NOTES_KEY, JSON.stringify(updatedNotes))
+
   }
 
   loadAllNotes() {
@@ -30,12 +36,12 @@ export class NotesService {
   }
 
 
-  saveNote(): void {
-    localStorage.setItem('NOTES', JSON.stringify(this.note()))
+  saveCurrentNote(): void {
+    localStorage.setItem(this.CURRENT_NOTE_KEY, JSON.stringify(this.currentNote()))
   }
 
-  loadNote(): Note {
-    const savedNote = localStorage.getItem('NOTES')
+  loadCurrentNote(): Note {
+    const savedNote = localStorage.getItem(this.CURRENT_NOTE_KEY)
     return savedNote ? JSON.parse(savedNote) : this.generateDefaultNote()
   }
 
@@ -43,7 +49,8 @@ export class NotesService {
     const defaultNote: Note = {
       content: 'sample content',
       creation_date: Date.now(),
-      last_edit: Date.now()
+      last_edit: Date.now(),
+      id: 0
     }
     return defaultNote
   }

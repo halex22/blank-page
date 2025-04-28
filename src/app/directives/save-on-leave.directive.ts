@@ -11,12 +11,10 @@ export class SaveOnLeaveDirective {
 
   @HostListener('mouseleave') onMouseLeave() {
     this.saveOnLeave.saveFnt()
-    console.log('soving on mpuse leave')
   }
 
   @HostListener('focusout') onFocusOut() {
     this.saveOnLeave.saveFnt()
-    console.log('focus out of the div')
   }
 
 }
