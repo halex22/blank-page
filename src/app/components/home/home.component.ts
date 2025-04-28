@@ -1,9 +1,8 @@
-import { Component, computed, inject, output, Signal, signal, WritableSignal } from '@angular/core';
+import { Component, computed, inject, output, signal } from '@angular/core';
 import { PageContentComponent } from '../page-content/page-content.component';
 import { SaveOnLeaveDirective } from '../../directives/save-on-leave.directive';
 import { DetailsComponent } from '../details/details.component';
 import { NotesService } from '../../services/notes.service';
-import { Note } from '../../models/note';
 import { UpdateContentDirective } from '../../directives/update-content.directive';
 import { HeaderComponent } from '../header/header.component';
 import { DrawerComponent } from "../drawer/drawer.component";
