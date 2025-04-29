@@ -33,8 +33,11 @@ export class HeaderComponent {
   changeTheme() {
     this.isDark = !this.isDark
     this.isDark ? this.turnOnDarkMode() : this.turnOffDarkMode() 
-
   } 
+
+  onSave() {
+    this.service.saveAllNotes()
+  }
 
   private turnOnDarkMode() {
     const body = document.body
