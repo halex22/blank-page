@@ -10,6 +10,7 @@ import { NotesService } from '../../services/notes.service';
 export class HeaderComponent {
 
   service = inject(NotesService)
+  isDark = false
 
   onDownload() {
     const note = new Blob([this.service.currentNote().content], {type: 'text/plain'})
@@ -27,6 +28,31 @@ export class HeaderComponent {
   addNote() {
     console.log('creating new note')
     this.service.addNewNote()
+  }
+
+  changeTheme() {
+    this.isDark = !this.isDark
+    this.isDark ? this.turnOnDarkMode() : this.turnOffDarkMode() 
+
+  } 
+
+  private turnOnDarkMode() {
+    const body = document.body
+    body.classList.add('dark-theme')
+    document.querySelectorAll('svg').forEach(icon => {
+      icon.classList.add('dark-icon')
+    })
+    document.querySelector('#editZone')!.classList.add('white-shadow')
+  }
+
+  private turnOffDarkMode() {
+    const body = document.body
+    body.classList.remove('dark-theme')
+    document.querySelectorAll('svg').forEach(icon => {
+      icon.classList.remove('dark-icon')
+    })
+    document.querySelector('#editZone')!.classList.remove('white-shadow')
+
   }
 
   

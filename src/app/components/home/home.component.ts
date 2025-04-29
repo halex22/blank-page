@@ -24,7 +24,7 @@ export class HomeComponent {
   totalChars = computed(() => this.noteContent().length)
 
   constructor() {
-    setInterval(() => this.service.saveAllNotes(), 5000)
+    // setInterval(() => this.service.saveAllNotes(), 5000)
   }
  
   saveChanges = () => { // ask about this context 

@@ -1,4 +1,45 @@
-/* You can add global styles to this file, and also import other style files */
 :root {
-    
+  --primary-color: #000000;
+  --primary-shadow: rgb(0, 0, 0, 0.1);
+  --primary-shadow-hover: rgba(0, 0, 0, 0.15);
+  --background-color: #fff7f7;
+  --text-color: #333333;
+  --selection: #f7e79e;
+}
+
+.dark-theme {
+  --primary-color: #ffffff;
+  --background-color: #121212;
+  --text-color: #e0e0e0;
+
+  &::selection {
+    background: #555;
+    color: #545454;
+  }
+}
+
+body {
+  padding: 0 1rem;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+div[page-content] {
+  box-shadow: 0px 10px 15px 15px var(--primary-shadow);
+
+  &:hover {
+    box-shadow: 0px 10px 15px 15px var(--primary-shadow-hover);
+  }
+
+  &::selection {
+    background: #fff3c0;
+  }
+}
+
+.white-shadow {
+  --primary-shadow: rgba(255, 255, 255, 0.1);
+  --primary-shadow-hover: rgba(255, 255, 255, 0.15);
+
+
 }

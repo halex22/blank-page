@@ -1,0 +1,16 @@
+.detail-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+
+    padding-right: 0.5rem;
+
+    p {
+        text-align: end;
+    }
+}
+
+.unit {
+    font-weight: bolder;
+    font-size: 1.1rem;
+}

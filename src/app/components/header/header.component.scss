@@ -1,13 +1,36 @@
 :host {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
 }
-ul {
-    list-style-type: none;
-    display: flex;
 
-    li {
-        margin-right: 1rem;
+:root {
+    --primary-color: #000000;
+    --background-color: #ffffff;
+    --text-color: #333333;
+  }
+
+svg {
+    width: 24px;
+    height: 24px;
+    fill: #333333;
+}
+
+.dark-icon {
+    fill: #ffffff;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    
+
+    div {
+        display: flex;
+        align-items: center;
+        margin-left: 1rem;
     }
 }
+
+
 
