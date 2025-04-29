@@ -17,6 +17,8 @@ export class NotesService {
   constructor() { 
     this.currentNote = signal(this.loadCurrentNote())
     this.notes = signal<Note[]>(this.loadAllNotes())
+
+    this.saveAllNotes()
   }
 
   saveAllNotes() {
@@ -33,8 +35,6 @@ export class NotesService {
       })
     }
     
-    console.log(this.currentNote())
-    console.log(updatedNotes)
     localStorage.setItem(this.NOTES_KEY, JSON.stringify(updatedNotes))
 
   }

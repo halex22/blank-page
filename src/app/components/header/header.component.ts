@@ -25,7 +25,7 @@ export class HeaderComponent {
     URL.revokeObjectURL(url)
   }
 
-  addNote() {
+  onAddNote() {
     console.log('creating new note')
     this.service.addNewNote()
   }
