@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 
 @Component({
-  selector: 'app-details',
+  selector: 'div[details]',
   imports: [],
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss'

@@ -8,6 +8,11 @@
     p {
         text-align: end;
     }
+
+    @media screen and (max-width: 1080px) {
+        flex-direction: row;
+        gap: 1rem;
+    }
 }
 
 .unit {

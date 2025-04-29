@@ -8,7 +8,7 @@ import { Component, Input, WritableSignal } from '@angular/core';
 })
 export class PageContentComponent {
 
-  @Input({required: true, alias: 'note-content'}) currentNote!: WritableSignal<string>
+  @Input({required: true, alias: 'note-content'}) currentNote!: string
 
   constructor() { 
   }

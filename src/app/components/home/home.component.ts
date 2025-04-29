@@ -17,20 +17,17 @@ export class HomeComponent {
 
   service = inject(NotesService)
 
-  note = this.service.currentNote
-
-  noteContent = signal<string>(this.note().content)
-  totalWords = computed(() => this.noteContent().match(/\w+/g)?.length ?? 0)
-  totalChars = computed(() => this.noteContent().length)
+  totalWords = computed(() => this.service.currentNote().content.match(/\w+/g)?.length ?? 0)
+  totalChars = computed(() => this.service.currentNote().content.length)
 
   constructor() {
-    // setInterval(() => this.service.saveAllNotes(), 5000)
+    setInterval(() => this.service.saveAllNotes(), 5000)
   }
  
   saveChanges = () => { // ask about this context 
-    this.note.update(prev => {
+    this.service.currentNote.update(prev => {
       const {creation_date, id} = prev
-      return {content: this.noteContent(), creation_date, last_edit: Date.now(), id}
+      return {content: this.service.currentNote().content, creation_date, last_edit: Date.now(), id}
     })
     this.service.saveCurrentNote()
   }

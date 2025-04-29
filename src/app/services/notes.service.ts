@@ -29,7 +29,6 @@ export class NotesService {
       updatedNotes = this.notes()
     } else {
       updatedNotes = this.notes().map(note => {
-        console.log(note.id === this.currentNote().id)
         if (note.id === this.currentNote().id) return this.currentNote()
         return note
       })
@@ -73,7 +72,11 @@ export class NotesService {
 
   removeNote(id: number) {
     this.notes.update(prev => prev.filter(note => note.id !== id))
-    if (!this.notes().length) this.addNewNote()
+    if (!this.notes().length) {
+      this.addNewNote()
+      return
+    }
+    this.currentNote.set(this.notes()[0])
   }
 
 }

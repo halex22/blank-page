@@ -1,5 +1,6 @@
 import { Directive, ElementRef, inject, Input, WritableSignal } from '@angular/core';
 import { HostListener } from '@angular/core';
+import { Note } from '../models/note';
 
 @Directive({
   selector: '[updateContent]'
@@ -7,13 +8,16 @@ import { HostListener } from '@angular/core';
 export class UpdateContentDirective {
 
   private el = inject(ElementRef)
-  @Input() updateContent!: WritableSignal<string>
+  @Input() updateContent!: WritableSignal<Note>
 
 
   @HostListener('input')
   onInput() {
     const updatedText = this.el.nativeElement.innerText
-    this.updateContent.set(updatedText)
+    this.updateContent.update(prev => ({
+      ...prev,
+      content: updatedText
+    }))
     this.moveCursorToEnd()
   }
 

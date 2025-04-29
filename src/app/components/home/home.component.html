@@ -1,15 +1,17 @@
 <app-header />
+<div details [words-total]="totalWords()" [chars-total]="totalChars()" class="mobile-count"></div>
 <main>
   <app-drawer />
   <div 
-  page-content 
-  contenteditable
-  [updateContent]="noteContent"
-  [saveOnLeave]="{saveFnt: saveChanges}" 
-  [note-content]="noteContent"
-  id="editZone"
-  >
-</div>
-<app-details [words-total]="totalWords()" [chars-total]="totalChars()"></app-details>
+    page-content 
+    contenteditable
+    [updateContent]="service.currentNote"
+    [saveOnLeave]="{saveFnt: saveChanges}" 
+    [note-content]="service.currentNote().content"
+    id="editZone"
+    >
+  </div>
+  <div details [words-total]="totalWords()" [chars-total]="totalChars()" class="web-count"></div>
+
 </main>
 

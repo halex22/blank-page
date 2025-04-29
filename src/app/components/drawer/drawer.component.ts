@@ -13,16 +13,15 @@ export class DrawerComponent {
 
   readonly service = inject(NotesService)
 
+  changeCurrentNote(noteId: number) {
+    const targetNote = this.service.notes().find(note => note.id === noteId)
+    if (!targetNote) return
+    this.service.currentNote.set(targetNote)
+  }
+
   onNoteDelete(noteId: number) {
     this.service.removeNote(noteId)
   }
 
-  // noteList = computed(() => {
-  //   return this.service.notes().map( note => {
-  //     const {id, last_edit, content} = note
-  //     const shortContent = content.slice(0, 10)
-  //     return {id , last_edit, shortContent}
-  //   })
-  // } )
 
 }
