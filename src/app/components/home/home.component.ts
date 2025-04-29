@@ -22,6 +22,10 @@ export class HomeComponent {
   noteContent = signal<string>(this.note().content)
   totalWords = computed(() => this.noteContent().match(/\w+/g)?.length ?? 0)
   totalChars = computed(() => this.noteContent().length)
+
+  constructor() {
+    setInterval(() => this.service.saveAllNotes(), 5000)
+  }
  
   saveChanges = () => { // ask about this context 
     this.note.update(prev => {

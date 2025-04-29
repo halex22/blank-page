@@ -16,23 +16,32 @@ export class NotesService {
 
   constructor() { 
     this.currentNote = signal(this.loadCurrentNote())
-    this.notes = signal(this.loadAllNotes())
+    this.notes = signal<Note[]>(this.loadAllNotes())
   }
 
   saveAllNotes() {
-
-    const updatedNotes = this.notes().forEach(note => {
-      if (note.id === this.currentNote().id) return this.currentNote()
-      return note
-    })
-
+    console.log('saving all')
+    let updatedNotes
+    if (!this.notes().length) {
+      this.notes.set([this.currentNote()])
+      updatedNotes = this.notes()
+    } else {
+      updatedNotes = this.notes().map(note => {
+        console.log(note.id === this.currentNote().id)
+        if (note.id === this.currentNote().id) return this.currentNote()
+        return note
+      })
+    }
+    
+    console.log(this.currentNote())
+    console.log(updatedNotes)
     localStorage.setItem(this.NOTES_KEY, JSON.stringify(updatedNotes))
 
   }
 
-  loadAllNotes() {
+  loadAllNotes(): Note[] {
     const savedNotes = localStorage.getItem(this.NOTES_KEY)
-    return JSON.parse(savedNotes ?? '[]')
+    return savedNotes ? JSON.parse(savedNotes) : []
   }
 
 
@@ -45,14 +54,26 @@ export class NotesService {
     return savedNote ? JSON.parse(savedNote) : this.generateDefaultNote()
   }
 
+
   generateDefaultNote(): Note {
     const defaultNote: Note = {
       content: 'sample content',
       creation_date: Date.now(),
       last_edit: Date.now(),
-      id: 0
+      id: Math.random()
     }
     return defaultNote
+  }
+
+  addNewNote() {
+    const newNote = this.generateDefaultNote()
+    this.notes.update(prev => [newNote, ...prev])
+    this.currentNote.set(newNote)
+  }
+
+  removeNote(id: number) {
+    this.notes.update(prev => prev.filter(note => note.id !== id))
+    if (!this.notes().length) this.addNewNote()
   }
 
 }

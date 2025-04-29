@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NotesService } from '../../services/notes.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { NotesService } from '../../services/notes.service';
 })
 export class HeaderComponent {
 
-  constructor(private service:NotesService) {}
+  service = inject(NotesService)
 
   onDownload() {
     const note = new Blob([this.service.currentNote().content], {type: 'text/plain'})
@@ -23,4 +23,11 @@ export class HeaderComponent {
     link.remove()
     URL.revokeObjectURL(url)
   }
+
+  addNote() {
+    console.log('creating new note')
+    this.service.addNewNote()
+  }
+
+  
 }

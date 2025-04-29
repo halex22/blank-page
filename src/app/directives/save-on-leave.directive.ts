@@ -5,7 +5,6 @@ import { Directive, ElementRef, HostListener, inject, Input } from '@angular/cor
 })
 export class SaveOnLeaveDirective {
 
-  private el = inject(ElementRef)
 
   @Input() saveOnLeave!:  {saveFnt: Function}
 

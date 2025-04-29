@@ -1,4 +1,4 @@
-import { Component, Input, input, OnInit, output, WritableSignal } from '@angular/core';
+import { Component, Input,  OnInit, WritableSignal } from '@angular/core';
 
 @Component({
   selector: 'div[page-content]',
@@ -14,8 +14,7 @@ export class PageContentComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    console.log('logging on init')
-    console.log(this.currentNote)
+
   }
 
 
