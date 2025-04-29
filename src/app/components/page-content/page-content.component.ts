@@ -10,11 +10,9 @@ export class PageContentComponent {
 
   @Input({required: true, alias: 'note-content'}) currentNote!: string
 
-  constructor() { 
+  get formattedNote(): string {
+    return this.currentNote.replace(/\n/g, '<br>')
   }
-
-
-
 
 }
  

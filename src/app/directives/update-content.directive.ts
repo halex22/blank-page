@@ -13,7 +13,7 @@ export class UpdateContentDirective {
 
   @HostListener('input')
   onInput() {
-    const updatedText = this.el.nativeElement.innerText
+    const updatedText = this.el.nativeElement.innerText ?? ''
     this.updateContent.update(prev => ({
       ...prev,
       content: updatedText

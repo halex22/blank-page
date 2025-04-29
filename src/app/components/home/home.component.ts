@@ -24,11 +24,13 @@ export class HomeComponent {
     setInterval(() => this.service.saveAllNotes(), 5000)
   }
  
-  saveChanges = () => { // ask about this context 
-    this.service.currentNote.update(prev => {
-      const {creation_date, id} = prev
-      return {content: this.service.currentNote().content, creation_date, last_edit: Date.now(), id}
-    })
+  saveChanges = () => { 
+    const updatedContent = this.service.currentNote().content
+    this.service.currentNote.update(prev =>({
+      ...prev,
+      content: updatedContent,
+      last_edit: Date.now()
+    }))
     this.service.saveCurrentNote()
   }
 
