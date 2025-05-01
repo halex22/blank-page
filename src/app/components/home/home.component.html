@@ -3,11 +3,10 @@
 <main>
   <app-drawer />
   <div 
-    page-content 
+    #editable
     contenteditable
     [updateContent]="service.currentNote"
     [saveOnLeave]="{saveFnt: saveChanges}" 
-    [note-content]="service.currentNote().content"
     id="editZone"
     >
   </div>

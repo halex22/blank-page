@@ -26,3 +26,28 @@ main {
         display: none;
     }
 }
+
+
+#editZone {
+    padding: 1rem 2rem;
+    border: 2px solid #31313131;
+    border-radius: 0.25rem;
+    height: 80dvh;
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0px 10px 15px 15px rgba(0,0,0,0.1);
+
+    // white-space: pre-wrap;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+
+}
