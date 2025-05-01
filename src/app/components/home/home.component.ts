@@ -27,12 +27,7 @@ export class HomeComponent {
 
   ngAfterViewInit() {
     const note = this.service.currentNote()
-    const html = note.content.replace(/\n/g, '<br>')
-    this.editableRef.nativeElement.innerHTML = html
-  }
-
-  get formattedContent () {
-    return this.service.currentNote().content.replace(/\n/g, '<br>')
+    this.editableRef.nativeElement.innerHTML = note.content.replace(/\n+$/, '')
   }
  
   saveChanges = () => { 
@@ -44,5 +39,4 @@ export class HomeComponent {
     }))
     this.service.saveCurrentNote()
   }
-
 }

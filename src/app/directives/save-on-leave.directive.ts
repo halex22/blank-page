@@ -5,7 +5,6 @@ import { Directive, ElementRef, HostListener, inject, Input } from '@angular/cor
 })
 export class SaveOnLeaveDirective {
 
-
   @Input() saveOnLeave!:  {saveFnt: Function}
 
   @HostListener('mouseleave') onMouseLeave() {

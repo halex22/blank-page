@@ -18,23 +18,9 @@ export class UpdateContentDirective {
       ...prev,
       content: updatedText
     }))
-    this.moveCursorToEnd()
   }
 
-  private moveCursorToEnd() {
-    const element = this.el.nativeElement
 
-    const range = document.createRange()
-    const selection = window.getSelection()
-
-    range.selectNodeContents(element)
-    range.collapse(false)
-
-    if (selection) {
-      selection.removeAllRanges()
-      selection.addRange(range)
-    }
-  }
 
 
 }
